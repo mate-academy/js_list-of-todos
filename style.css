@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  border: 1px solid  black;
+  border-collapse: collapse;
+  cursor: default;
+}
+
+td, th {
+  text-align: center;
+  border: 1px solid  black;
+}
+
+thead {
+  background: #BDBDBD;
+}

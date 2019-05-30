@@ -45,11 +45,11 @@ function setStatusCell(user) {
 }
 
 (async () => {
-  let response = await fetch('https://jsonplaceholder.typicode.com/todos');
-  let todoList = await response.json();
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const todoList = await response.json();
 
-  let response2 = await fetch('https://jsonplaceholder.typicode.com/users');
-  let usersInfo = await response2.json();
+  const response2 = await fetch('https://jsonplaceholder.typicode.com/users');
+  const usersInfo = await response2.json();
 
 
   for (const user of todoList) {

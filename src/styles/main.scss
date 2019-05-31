@@ -1,0 +1,43 @@
+@import "utils";
+@import "fonts";
+@import "typography";
+
+body {
+  background: $c-gray;
+  color: darkslategrey;
+}
+
+caption {
+  font-size: 30px;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: separate;
+  border: 4px solid burlywood;
+}
+
+thead {
+  font-size: 24px;
+  background: darkcyan;
+  color: burlywood;
+}
+
+tbody {
+  font-size: 18px;
+  color: darkslategrey;
+  background-color: beige;
+}
+
+td {
+  padding: 3px;
+  border: 2px solid darkslateblue;
+}
+
+td:not(:first-child) {
+  text-align: center;
+}
+
+tr {
+  position: relative;
+}

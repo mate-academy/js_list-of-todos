@@ -1,67 +1,85 @@
 'use strict';
 
-const tableContainer = document.createElement('div');
-tableContainer.className = 'table-container';
-document.querySelector('body').append(tableContainer);
+const headers = ['task', 'user', 'completed'];
 
-const table = document.createElement('table');
-tableContainer.append(table);
-table.className = 'todo-list-table';
+function createElement(content = '', tag = 'td') {
+  const element = document.createElement(tag);
 
-const thead = document.createElement('thead');
-const tbody = document.createElement('tbody');
-table.append(thead, tbody);
+  typeof content === 'string' ?
+    element.textContent = content :
+    element.appendChild(content);
 
-const theadItems = ['To Do Item', 'Name', 'Status'];
-
-for(let i = 0; i < theadItems.length; i++){
-  const theadItem = document.createElement('th');
-  theadItem.textContent = theadItems[i];
-  thead.append(theadItem);
+  return element;
 }
 
-function setNameCell(user, usersInfoArray) {
-  const cellName = document.createElement('td');
-  const userName = usersInfoArray.find(person => person.id === user.userId).name;
-  const emailAdd = usersInfoArray.find(person => person.id === user.userId).email;
-  cellName.innerHTML = `<a href=mailto: ${emailAdd}>${userName}</a>`;
+async function loadData() {
+  const todosPromise = fetch('https://jsonplaceholder.typicode.com/todos');
+  const usersPromise = fetch('https://jsonplaceholder.typicode.com/users');
+  const [todosResponse, usersResponse] = await Promise.all([todosPromise, usersPromise]);
+  const todos = await todosResponse.json();
+  const users = await usersResponse.json();
 
-  return cellName;
+  return {
+    todos,
+    users
+  };
 }
 
-function setTodoItemCell(user) {
-  const cellTitle = document.createElement('td');
-  cellTitle.textContent = user.title;
+const createRow = usersMap => todo => {
+  const {
+    userId,
+    title,
+    completed,
+  } = todo;
+  const {
+    email,
+    name
+  } = usersMap[userId];
+  const row = createElement('', 'tr');
+  const titleTd = createElement(title);
+  const link = createElement(name, 'a');
+  link.setAttribute('href', `mailto:${email}`);
+  const userTd = createElement(link);
+  const stateTd = createElement(completed ? 'Yes' : 'No');
+  const status = completed ? 'done' : 'not-yet';
+  stateTd.classList.add(status);
 
-  return cellTitle;
+  row.append(titleTd, userTd, stateTd);
+
+  return row;
+};
+
+function createTable({
+  todos,
+  users
+}) {
+  const usersMap = users
+    .reduce((acc, user) => ({
+      ...acc,
+      [user.id]: user,
+    }), {});
+
+  const table = createElement('', 'table');
+  const thead = createElement('', 'thead');
+  const tbody = createElement('', 'tbody');
+  const headRow = createElement('', 'tr');
+
+  const heads = headers.map(title => createElement(title, 'th'));
+  const rows = todos.map(createRow(usersMap));
+
+  headRow.append(...heads);
+  thead.append(headRow);
+  tbody.append(...rows);
+  table.append(thead, tbody);
+
+  return table;
 }
 
-function setStatusCell(user) {
-  const cellStatus = document.createElement('td');
-  cellStatus.textContent = user.completed ? 'done' : 'not-yet';
-  cellStatus.dataset.status = user.completed ? 'done' : 'not-yet';
+async function renderTODOs() {
+  const data = await loadData();
+  const table = createTable(data);
 
-  return cellStatus;
+  document.body.append(table);
 }
 
-(async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-  const todoList = await response.json();
-
-  const response2 = await fetch('https://jsonplaceholder.typicode.com/users');
-  const usersInfo = await response2.json();
-
-
-  for (const user of todoList) {
-    const tr = document.createElement('tr');
-
-    const cellItem = setTodoItemCell(user);
-    const cellName = setNameCell(user, usersInfo);
-    const cellStatus = setStatusCell(user);
-
-    tr.append(cellItem, cellName, cellStatus);
-
-    tbody.append(tr);
-  }
-
-})();
+window.addEventListener('load', renderTODOs);

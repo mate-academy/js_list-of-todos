@@ -1,3 +1,4 @@
+const requests = ['todos', 'users'];
 const data = [];
 
   requests.forEach(function(item){

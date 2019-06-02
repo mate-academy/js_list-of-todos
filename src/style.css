@@ -1,0 +1,46 @@
+  table {
+    border: 6px solid #948473;
+    background-color: #FFE3C6;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  td, th {
+    border: 1px solid #948473;
+    padding: 4px 4px;
+  }
+
+  td {
+    font-size: 15px;
+  }
+
+  thead {
+    background: #948473;
+    background: linear-gradient(to bottom, #afa396 0%, #9e9081 66%, #948473 100%);
+  }
+
+  th {
+    font-size: 20px;
+    font-weight: bold;
+    color: #F0F0F0;
+    border-left: 4px solid #948473;
+}
+
+  thead th:first-child {
+    border-left: none;
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: blue;
+  }
+
+  .complete {
+    color: green;
+  }
+
+

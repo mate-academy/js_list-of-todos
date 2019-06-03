@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 4px 10px;
+}
+
+td:not(:first-child) {
+    text-align: center;
+}

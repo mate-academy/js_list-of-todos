@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         xhrUsers.onload = function() {
             const users = JSON.parse(xhrUsers.response);
             const todoList = JSON.parse(xhrToDo.response);
-            console.log(users)
-            console.log(xhrToDo.response)
-            console.log(JSON.parse(xhrUsers.response))
+            
             for (let user of users){
                 for (let todo of todoList){
                     if (todo.userId === user.id) {

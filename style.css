@@ -1,10 +1,5 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-}
-
 table {
-    margin: 20px auto;
+    margin: 5px auto;
     border-collapse: collapse;
     border: 1px solid black;
 }
@@ -12,9 +7,10 @@ table {
 td,
 th {
     border: 1px solid black;
-    padding: 4px 10px;
+    
 }
 
-td:not(:first-child) {
-    text-align: center;
+th {
+    background-color: #eee;
 }
+

@@ -1,8 +1,15 @@
-table {
+.table {
   border-collapse: collapse;
-  text-align: center;
 }
 
-td, tr {
+thead {
+  background: #ccc;
+}
+tbody {
+  background: #eee;
+}
+td,th {
   border: 1px solid black;
+  padding: 5px;
+  text-align: center;
 }

@@ -15,23 +15,23 @@ Promise.all(
 
 function createTable(data) {
     const table = document.createElement('table');
-    const titleTable = ['Title', 'Author', 'State'];
+    const titleList = ['Title', 'Author', 'State'];
     const thead = table.appendChild(document.createElement('thead'));
-    const tr = thead.appendChild(document.createElement('tr'));
-    titleTable.forEach((titleName)=>{
-      const th = tr.appendChild(document.createElement('th'));
-      th.innerHTML = titleName;
+    const todoTitle = thead.appendChild(document.createElement('tr'));
+    titleList.forEach((titleName)=>{
+      const titleItem = todoTitle.appendChild(document.createElement('th'));
+      titleItem.innerHTML = titleName;
     })
       data.forEach((todoItem)=>{
-          const tr = document.createElement('tr');
-          const td = document.createElement('td');
-          table.appendChild(tr);
-          tr.appendChild(td);
-          tr.classList.add(`id-${todoItem.userId}`);
-          td.innerHTML = todoItem.title;
-          const td1 = tr.appendChild(document.createElement('td'));
-          td1.innerHTML = todoItem.completed ? 'complete' : 'working';
-          td1.classList.add(`${td1.innerHTML}`);
+          const todoList = document.createElement('tr');
+          const todoTitle = document.createElement('td');
+          table.appendChild(todoList);
+          todoList.appendChild(todoTitle);
+          todoList.classList.add(`id-${todoItem.userId}`);
+          todoTitle.innerHTML = todoItem.title;
+          const todoState = todoList.appendChild(document.createElement('td'));
+          todoState.innerHTML = todoItem.completed ? 'complete' : 'working';
+          todoState.classList.add(`${todoState.innerHTML}`);
       })
       const container = document.querySelector('#container');
       container.appendChild(table); 
@@ -39,11 +39,11 @@ function createTable(data) {
 
 function createAuthor(data) {
   data.forEach((author)=>{
-    const id = document.querySelectorAll(`.id-${author.id}`);
-    id.forEach((elem)=>{
-      const td = document.createElement('td');
-      elem.insertBefore(td, elem.lastElementChild);
-      td.innerHTML = `<a href=${author.email}>${author.name}</a>`;
+    const authorId = document.querySelectorAll(`.id-${author.id}`);
+    authorId.forEach((elem)=>{
+      const todoAuthor = document.createElement('td');
+      elem.insertBefore(todoAuthor, elem.lastElementChild);
+      todoAuthor.innerHTML = `<a href=${author.email}>${author.name}</a>`;
     })
   })
 }

@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   const todoItems = (data) => {
-    console.log(data);
     const toDoList = data[0];
     const userNames = data[1];
     const container = document.querySelector('.container');
@@ -30,8 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
           ${toDoList.map(item =>`
           <tr>
             <td>${item.title}</td>
-            <td><a href=${userNames[item.userId - 1].email}>${userNames[item.userId - 1].name}</a></td>
-            <td>${item.completed}</td>
+            <td>
+              <a href=${userNames[item.userId - 1].email}>${userNames[item.userId - 1].name}</a>
+            </td>
+            <td class="${item.completed === true ? "completed" : "in-process"}">
+              ${item.completed === true ? "Completed" : "In process"}
+            </td>
           </tr>`).join('')}
         </tbody>
       </table>

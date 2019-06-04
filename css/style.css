@@ -1,0 +1,22 @@
+table {
+  width: 800px;
+  margin: 25px auto;
+  background-color: rgb(162, 243, 130);
+  border-radius: 15px;
+}
+
+th {
+  text-align: left;
+}
+
+td, th {
+  width: 50px;
+  padding-top: 5px;
+  padding-left: 20px;
+}
+
+h1 {
+  text-align: center;
+  line-height: 30px;
+  margin-bottom: 0;
+}

@@ -17,19 +17,19 @@ async function renderTable() {
     container.append(table);
 }
 
-function createTable({users, todos}) {
+function createTable({ users, todos }) {
     const tableHeaders = ['TODOitem', 'Name', 'Status'];
     const table = document.createElement('table');
     const thead = document.createElement('thead');
     const tr = document.createElement('tr');
-    const td = document.createElement('td');
+    const th = document.createElement('th');
     tableHeaders.forEach( header => {
-        const th = td.cloneNode();
-        th.innerText = header;
-        tr.appendChild(th);
+        const tableHead = th.cloneNode();
+        tableHead.innerText = header;
+        tr.appendChild(tableHead);
     });
     thead.append(tr);
-    const tbody = createTbody({users, todos});
+    const tbody = createTbody({ users, todos });
     table.append(thead, tbody);
 
     return table;

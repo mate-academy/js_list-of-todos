@@ -8,7 +8,7 @@ table.append(th);
 const tr = document.createElement('tr');
 th.append(tr);
 const headers = ['list to do', 'user name', 'completed'];
-for (let i=0; i < headers.length; i++) {
+for (let i = 0; i < headers.length; i++) {
     const td = document.createElement('td');
     td.textContent = headers[i];
     tr.append(td);
@@ -25,14 +25,11 @@ function load(URL) {
 const todos = load('https://jsonplaceholder.typicode.com/todos');
 const users = load('https://jsonplaceholder.typicode.com/users');
 
-// console.log(todos);
-// console.log(users);
-
 function createTbody(item, user) {
     return `<tr><td>${item.title}</td><td><a href="mailto:${user.email}">${user.name}</td><td>${item.completed}</td></tr>`}
 
-todos.forEach(item => {
-    const user = users.find((user) => user.id === item.userId);
-    const inf = createTbody(item, user);
-    th.insertAdjacentHTML('afterend', inf);
+todos.forEach((item) => {
+    const user = users.find(user => user.id === item.userId);
+    const tbody = createTbody(item, user);
+    th.insertAdjacentHTML('afterend', tbody);
 });

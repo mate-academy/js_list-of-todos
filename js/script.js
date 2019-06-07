@@ -1,8 +1,8 @@
 const table = document.querySelector('#table');
-const items = createTodoSList('https://jsonplaceholder.typicode.com/todos');
-const users = createTodoSList('https://jsonplaceholder.typicode.com/users');
+const items = loadUrl('https://jsonplaceholder.typicode.com/todos');
+const users = loadUrl('https://jsonplaceholder.typicode.com/users');
 
-function createTodoSList(url) {
+function loadUrl(url) {
   let xhr = new XMLHttpRequest();
   xhr.open('GET', url, false);
   xhr.send();

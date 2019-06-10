@@ -2,75 +2,87 @@
 const table = document.querySelector('table');
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
-const errorInfo = document.querySelector('div#errorinfo');
+const errorInfo = document.querySelector('#errorinfo');
+const serverUrl = ' https://jsonplaceholder.typicode.com/';
 
-function getUser(users, userId) {
-  return users.find((user)=> {
-    return user.id === userId;
-  });
+const state = {
+  users: null,
+  todos: null,
+  todoList: null,
+  loading: false
+
+}
+
+function isLoaded() {
+  return state.todoList !== null;
+}
+
+function isReceived() {
+  return state.todos && state.users;
+}
+
+function sendRequest(url, handler) {
+  const request = new XMLHttpRequest();
+  request.open('GET', url);
+  request.addEventListener('load', handler(request));
+  request.send();
+}
+
+const requestTodosHandler = request => () => {
+  const parseTodos = JSON.parse(request.responseText);
+  state.todos = parseTodos;
+  checkData();
+}
+
+const requestUsersHandler = request => () => {
+  const parseUsers = JSON.parse(request.responseText);
+  state.users = parseUsers;
+  checkData();
+}
+
+function checkData() {
+  if (!isReceived()) return;
+  const todosListMap = state.todos.map(todo => ({...todo,
+    user: state.users.find(user => user.id === todo.userId)})
+  );
+  state.todoList = todosListMap;
+  state.loading = false;
+  fillTable();
+}
+
+function loadData() {
+  state.loading = true;
+  state.todoList = null;
+  sendRequest(`${serverUrl}todos`, requestTodosHandler);
+  sendRequest(`${serverUrl}users`, requestUsersHandler);
 }
 
 function fillTable() {
-  let request = new XMLHttpRequest();
-  request.open('GET', 'https://jsonplaceholder.typicode.com/users', false);
-  request.send();
-  if (request.status !== 200) {
-    errorInfo.textContent = `Error get user table: ${request.status}`;
-    return;
-  }
-  const users = JSON.parse(request.responseText);
-
-  request.open('GET', 'https://jsonplaceholder.typicode.com/todos', false);
-  request.send();
-  if (request.status !== 200) {
-    errorInfo.textContent = `Error get TODOs table: ${request.status}`;
-    return;
-  }
-  const todos = JSON.parse(request.responseText);
-  let user;
-  let a;
-  todos.forEach((todo) => {
+  state.todoList.forEach((todo) => {
     const row = document.createElement('tr');
 
-    let cell = document.createElement('td');
-    cell.textContent = todo.title;
-    row.appendChild(cell);
+    const titleCell = document.createElement('td');
+    titleCell.textContent = todo.title;
+    row.appendChild(titleCell);
 
-    cell = document.createElement('td');
-    user = getUser(users, todo.userId);
-    if (user) {
-      a = document.createElement('a');
-      a.textContent = user.name;
-      a.setAttribute('href', `mailto:${user.email}`);
-      cell.appendChild(a);
+    const userCell = document.createElement('td');
+    if (todo.user) {
+      const userLink = document.createElement('a');
+      userLink.textContent = todo.user.name;
+      userLink.setAttribute('href', `mailto:${todo.user.email}`);
+      userCell.appendChild(userLink);
     } else {
-      cell.textContent = todo.userId;
+      userCell.textContent = todo.userId;
     }
-    row.appendChild(cell);
+    row.appendChild(userCell);
 
-    cell = document.createElement('td');
-    cell.textContent = todo.completed;
-    row.appendChild(cell);
+    const completedCell = document.createElement('td');
+    completedCell.textContent = todo.completed;
+    row.appendChild(completedCell);
 
     tbody.appendChild(row);
+    table.classList.remove('hidden');
   });
 }
-fillTable();
 
-// "userId": 1,
-//     "id": 1,
-//     "title": "delectus aut autem",
-//     "completed": false
-
-// "id": 1,
-//     "name": "Leanne Graham",
-//     "username": "Bret",
-//     "email": "Sincere@april.biz",
-//     "address": {
-//       "street": "Kulas Light",
-//       "suite": "Apt. 556",
-//       "city": "Gwenborough",
-//       "zipcode": "92998-3874",
-//       "geo": {
-//         "lat": "-37.3159",
-//         "lng": "81.1496"
+loadData();

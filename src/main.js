@@ -1,16 +1,21 @@
+'use strict'
+
 const table = document.querySelector('.todo');
 
-function getRequest(url) {
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', url, false);
-  xhr.send();
-  const parsedData = JSON.parse(xhr.responseText);
-
-  return parsedData;
+function getDate(url) {
+  return fetch(url)
+    .then(response => response.json())
 }
 
-const todos = getRequest('https://jsonplaceholder.typicode.com/todos');
-const users = getRequest('https://jsonplaceholder.typicode.com/users');
+Promise.all(
+  [getDate('https://jsonplaceholder.typicode.com/todos'), 
+   getDate('https://jsonplaceholder.typicode.com/users')],
+).then(data => {
+    data[0].forEach(todo => {
+     const row = createRows(todo, data[1].find(user => user.id === todo.userId));
+     table.insertAdjacentHTML('beforeend', row);
+    })
+});
 
 function createRows(todoItem, user) {
   return `
@@ -22,13 +27,4 @@ function createRows(todoItem, user) {
       <td>${todoItem.completed}</td>
     </tr>
   `
-}
-
-for (let i = 0; i < todos.length; i++) {
-  for (let b = 0; b < users.length; b++) {
-    if (todos[i].userId === users[b].id) {
-      let row = createRows(todos[i], users[b]);
-      table.insertAdjacentHTML('beforeend', row);
-    }
-  }
-}
+};

@@ -5,9 +5,9 @@ const headers = ['task', 'user', 'completed'];
 function createElement(content = '', tag = 'td') {
   const element = document.createElement(tag);
 
-  typeof content === 'string' ?
-    element.textContent = content :
-    element.appendChild(content);
+  typeof content === 'string' 
+    ? element.textContent = content
+    : element.appendChild(content);
 
   return element;
 }

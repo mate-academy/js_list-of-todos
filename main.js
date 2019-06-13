@@ -1,4 +1,6 @@
-const container = document.querySelector('#root');
+'use strict';
+
+const container = document.querySelector('#tbody');
 const data = [
   'https://jsonplaceholder.typicode.com/users',
   'https://jsonplaceholder.typicode.com/todos'
@@ -31,11 +33,11 @@ function createTodos(users, todos) {
   for (let i = 0; i < todos.length; i++) {
     const user = getUserName(users, todos[i]['userId']);
     container.insertAdjacentHTML('beforeend', `
-    <div class="wrap grid">
-      <div>${todos[i]['title']}</div>
-      <div><a href="mailto:${user.email}">${user.name}</a></div>
-      <div>${todos[i]['completed']}</div>
-    </div>
+    <tr class="wrap">
+      <td>${todos[i]['title']}</td>
+      <td><a href="mailto:${user.email}">${user.name}</a></td>
+      <td>${todos[i]['completed']}</td>
+    </tr>
     `)
   }
 }

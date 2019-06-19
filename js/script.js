@@ -1,5 +1,7 @@
+'use strict';
+
 const table = document.querySelector('#table');
-const items = loadUrl('https://jsonplaceholder.typicode.com/todos');
+const todoS = loadUrl('https://jsonplaceholder.typicode.com/todos');
 const users = loadUrl('https://jsonplaceholder.typicode.com/users');
 
 function loadUrl(url) {
@@ -7,9 +9,7 @@ function loadUrl(url) {
   xhr.open('GET', url, false);
   xhr.send();
 
-  const parseData = JSON.parse(xhr.responseText);
-
-  return parseData;
+  return JSON.parse(xhr.responseText);
 }
 
 function createTemplate(item, user) {
@@ -22,7 +22,7 @@ function createTemplate(item, user) {
   `;
 }
 
-items.forEach(item => {
+todoS.forEach(item => {
   const user = users.find((user) => user.id === item.userId);
   const tr = createTemplate(item, user);
   table.insertAdjacentHTML('beforeend', tr);

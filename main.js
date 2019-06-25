@@ -9,7 +9,7 @@ let users = null;
   const xhrTODO = new XMLHttpRequest();
   xhrTODO.open('GET', urlTODO, true);
 	xhrTODO.responseType = 'json';
-	xhrTODO.addEventListener('load', ()=>{
+	xhrTODO.addEventListener('load', () => {
     todos = xhrTODO.response;
    
       if( todos !== null && users !== null) {

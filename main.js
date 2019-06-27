@@ -22,7 +22,7 @@ let users = null;
   const xhrUsers = new XMLHttpRequest();
   xhrUsers.open('GET', urlUsers, true);
   xhrUsers.responseType = 'json';
-  xhrUsers.addEventListener('load', ()=>{
+  xhrUsers.addEventListener('load', () => {
     users = xhrUsers.response;
 
       if( todos !== null && users !== null) {

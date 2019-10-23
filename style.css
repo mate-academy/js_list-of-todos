@@ -1,0 +1,16 @@
+table {
+    margin: 5px auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td,
+th {
+    border: 1px solid black;
+    
+}
+
+th {
+    background-color: #eee;
+}
+

@@ -1,7 +1,7 @@
 function table() {
     let table = document.querySelector('.table');
     table.innerHTML = `
-    <table class="ui inverted table">
+    <table class="ui red table">
         <thead>
             <th>TODO item</th>
             <th>The name of the user</th>
@@ -23,6 +23,13 @@ function table() {
             let rows = document.createElement('tr');
             tdTodo.textContent = todo.title;     
             tdComplete.textContent = todo.completed;
+            if (todo.completed == true) {
+                tdComplete.className = 'positive'
+                tdComplete.innerHTML = `<i class="icon checkmark"></i> true`
+            } else if (todo.completed == false) {
+                tdComplete.className = 'negative'
+                tdComplete.innerHTML = `<i class="icon close"></i> false`
+            }
             for (let user of usersList) {
                 if (user.id === todo.userId){
                     let tdName = document.createElement('td');

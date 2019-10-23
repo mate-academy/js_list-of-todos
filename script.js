@@ -33,22 +33,25 @@ const createTable = async () => {
   for (const todo of todos) {
     const tableRow = document.createElement('tr');
     const todoItem = document.createElement('td');
-    const userEmail = document.createElement('td');
+    const userName = document.createElement('td');
     const isCompleted = document.createElement('td');
+    const userLink = document.createElement('a');
 
     if (todo.userId !== user.id) {
       user = users.find(user => user.id === todo.userId);
     }
     
     todoItem.textContent = todo.title;
-    userEmail.textContent = user.email;
+    userLink.textContent = user.name;
+    userLink.href = `mailto:${user.email}`;
     isCompleted.textContent = todo.completed;
 
     todoItem.classList.add('td');
-    userEmail.classList.add('td');
+    userName.classList.add('td');
     isCompleted.classList.add('td');
 
-    tableRow.append(todoItem, userEmail, isCompleted);
+    userName.appendChild(userLink);
+    tableRow.append(todoItem, userName, isCompleted);
 
     tBody.appendChild(tableRow);
   }

@@ -1,7 +1,7 @@
 function table() {
     let table = document.querySelector('.table');
     table.innerHTML = `
-    <table>
+    <table class="ui inverted table">
         <thead>
             <th>TODO item</th>
             <th>The name of the user</th>
@@ -10,7 +10,7 @@ function table() {
         <tbody id='tableBody'></tbody>
     </table>
     `
- 
+
     let list = async function () {
         let response = await fetch(`https://jsonplaceholder.typicode.com/todos`);
         let todoList = await response.json();

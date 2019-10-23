@@ -1,0 +1,27 @@
+{
+  "name": "js_list-of-todos",
+  "version": "1.0.0",
+  "description": "By requesting https://jsonplaceholder.typicode.com/todos and https://jsonplaceholder.typicode.com/users, create and fill a table with three columns:",
+  "main": "script.js",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-print": "^5.0.0",
+    "semantic-ui-table": "^2.3.1"
+  },
+  "devDependencies": {
+    "gulp-header": "^2.0.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrii-Pavlenko/js_list-of-todos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrii-Pavlenko/js_list-of-todos/issues"
+  },
+  "homepage": "https://github.com/Andrii-Pavlenko/js_list-of-todos#readme"
+}

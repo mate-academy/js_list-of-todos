@@ -18,7 +18,6 @@ async function createTable() {
       let user = usersList.find((user) => todos.userId === user.id)
       currentUser['user'] = user; 
     })
-    console.log(currentUser); 
     const tr = document.createElement('tr'); 
     let line = ''; 
     line += `<td>${currentUser.title}</>`; 

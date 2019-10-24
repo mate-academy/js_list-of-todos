@@ -1,3 +1,16 @@
+a {
+  transition: color 0.7s;
+}
+a:hover {
+  color: blueviolet !important;
+}
 
+tbody tr {
+  transition: background-color 0.7s;
+}
+tbody tr .positive,
+tbody tr .negative {
+  transition: background-color 0.7s !important;
+}
 
 /*# sourceMappingURL=main.css.map */

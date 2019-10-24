@@ -9,13 +9,13 @@ async function getData(url) {
 }
 
 async function createTable() {
-  const firstPart = await getData('https://jsonplaceholder.typicode.com/todos'); 
-  const secondPart = await getData('https://jsonplaceholder.typicode.com/users'); 
-  
-  for (let i = 0; i < firstPart.length; i++) {
-    let currentUser = firstPart[i];
-    firstPart.forEach((todos) => {
-      let user = secondPart.find((user) => todos.userId === user.id)
+  const todoList = await getData('https://jsonplaceholder.typicode.com/todos'); 
+  const usersList = await getData('https://jsonplaceholder.typicode.com/users'); 
+
+  for (let i = 0; i < todoList.length; i++) {
+    let currentUser = todoList[i];
+    todoList.forEach((todos) => {
+      let user = usersList.find((user) => todos.userId === user.id)
       currentUser['user'] = user; 
     })
     console.log(currentUser); 

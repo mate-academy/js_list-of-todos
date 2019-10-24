@@ -24,7 +24,7 @@ const todoItems = (data => {
           <td>
             <a href="mailto:${userNames[item.userId - 1].email}">${userNames[item.userId -1].name}</a>
           </td>
-          <td class="${item.completed === true ? "completed" : "in-progress"}">
+          <td class="${item.completed === true ? 'positive' : 'negative'}">
             ${item.completed === true ? "Completed" : "In Progress"}
           </td>
         </tr>

@@ -16,8 +16,8 @@ async function creatingTable() {
     const taskProgress = key.completed ? 'green checkmark icon' : 'window close icon red';
     
     tableRow.innerHTML = `<td>${key.title}</td>
-                    <td><a href = "mailto:${userEmail}">${userName}</a></td>
-                    <td><i class="${taskProgress}"></i>${key.completed}</td>`;
+                          <td><a href = "mailto:${userEmail}">${userName}</a></td>
+                          <td><i class="${taskProgress}"></i>${key.completed}</td>`;
     
     tableBody.append(tableRow);
   }

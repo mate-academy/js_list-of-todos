@@ -1,0 +1,12 @@
+#todo-list {
+  border-collapse: collapse;
+}
+#todo-list th {
+  border: 1px solid black;
+  background-color: #cccccc;
+}
+#todo-list td {
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=styles.css.map */

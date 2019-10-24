@@ -1,3 +1,6 @@
+- [For review GitHub Pages](https://batsenko.github.io/js_list-of-todos/)
+
+
 # List of TODOs
 
 By requesting https://jsonplaceholder.typicode.com/todos and https://jsonplaceholder.typicode.com/users, create and fill a table with three columns:

@@ -5,4 +5,4 @@ By requesting https://jsonplaceholder.typicode.com/todos and https://jsonplaceho
 1. a TODO item,
 2. the name of the user whom the item belongs to (the name should be a link to the user’s email address — use `a href="mailto:email@address.com"`),
 3. whether the item is completed.
-[Link](https://karpyshynroman.github.io/js_list-of-todosgit ) <br>
+[Link](https://karpyshynroman.github.io/js_list-of-todos/ ) <br>

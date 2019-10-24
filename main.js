@@ -1,8 +1,9 @@
 const tbody = document.querySelectorAll('tbody')[0];
 
+
 const connect = (url) => {
   return fetch(url)
-    .then(data => data.json());
+    .then(response => response .json());
 };
 
 const fillData = async () => {
@@ -12,12 +13,11 @@ const fillData = async () => {
     let value = todos[item];
     const row = document.createElement('tr');
     const usersEmail = users.find(user => user.id === value.userId).email;
+    const userName= users.find(user => user.id === value.userId).name;
     row.innerHTML =      `<td>${value.title}</td>
-                          <td><a href = 'mailto:${usersEmail}'>${usersEmail}</a></td>
+                          <td><a href = 'mailto:${usersEmail}'>${userName}</a></td>
                           <td>${value.completed}</td>`;
     tbody.append(row);
   });
 };
-
 fillData();
-

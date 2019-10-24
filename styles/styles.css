@@ -1,21 +1,4 @@
-table {
-  border-spacing: 0;
-  text-align: left;
-  font-size: 18px;
-  border: 1px solid black;
-  margin: 0 auto;
-}
-
-table thead {
-  background-color: #ccc;
-}
-
-table td {
-  border: 1px solid black;
-  padding: 5px;
-}
-
-table a {
-  color: black;
+a {
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */

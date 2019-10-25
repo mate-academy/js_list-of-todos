@@ -33,18 +33,13 @@ const getData = async (url) => {
 };
 
 const init = async () => {
-  const [users, items] = await Promise.all([getData(urlUsers), getData(urlTODOs)]);
+  const [users, todos] = await Promise.all([getData(urlUsers), getData(urlTODOs)]);
 
-  const hash = {};
-  users.forEach(user => {
-    hash[user.id] = user;
+  todos.forEach(todo => {
+    todo.user = users.find(user => user.id === todo.userId);
   });
 
-  items.forEach(item => {
-    item.user = hash[item.userId];
-  });
-
-  items.forEach(render);
+  todos.forEach(render);
 };
 init();
 

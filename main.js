@@ -27,25 +27,13 @@ const render = (item) => {
 };
 
 
-const getList = async () => {
-  return fetch(urlTODOs)
+const getData = async (url) => {
+  return fetch(url)
     .then(response => response.json());
 };
 
-const getUsers = async () => {
-  return fetch(urlUsers)
-    .then(response => response.json());
-};
-
-const getData = async () => {
-  const [users, items] = await Promise.all([getUsers(), getList()]);
-  // const usersPromise = getUsers();
-  // const listPromise = getList();
-  // const users = await usersPromise;
-  // const list = await listPromise;
-
-  console.log(users);
-  console.log(items);
+const init = async () => {
+  const [users, items] = await Promise.all([getData(urlUsers), getData(urlTODOs)]);
 
   const hash = {};
   users.forEach(user => {
@@ -58,5 +46,5 @@ const getData = async () => {
 
   items.forEach(render);
 };
-getData();
+init();
 

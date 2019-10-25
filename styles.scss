@@ -3,11 +3,11 @@ body {
 
 #todo-list {
   border-collapse: collapse;
-  th {
+  .column-head {
     border: 1px solid black;
     background-color: #cccccc;
   }
-  td {
+  .TODOitem, .userName, .item-status {
     border: 1px solid black;
   }
 }

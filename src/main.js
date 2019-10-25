@@ -28,8 +28,3 @@ const data = async () => {
 };
 
 data();
-
-
-
-
-

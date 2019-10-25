@@ -20,9 +20,9 @@ const data = async () => {
     const userName= users.find(user => user.id === value.userId).name;
     let completeness = (value.completed) ? 'completed' : 'failed';
 
-    trow.innerHTML =      `<td>${value.title}</td>
-                          <td><a href = 'mailto:${usersEmail}'>${userName}</a></td>
-                          <td>${completeness}</td>`;
+    trow.innerHTML = `<td>${value.title}</td>
+                     <td><a href = 'mailto:${usersEmail}'>${userName}</a></td>
+                     <td>${completeness}</td>`;
     tbody.append(trow);
   });
 };

@@ -8,11 +8,18 @@ table.innerHTML = `
   `
 const tableBody = document.createElement('tbody');
 tableBody.classList.add('tableBody');
-const render = async function () {
-  const toDoList = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-    .then(response => response.json());
-  const usersList = await fetch(`https://jsonplaceholder.typicode.com/users`)
-    .then(response => response.json());
+
+const askToServ = async function(url) {
+  return fetch(url)
+    .then(responce => responce.json());
+}
+
+const getData = async function() {
+  return await Promise.all([askToServ(`https://jsonplaceholder.typicode.com/todos`), askToServ(`https://jsonplaceholder.typicode.com/users`)]);
+}
+
+const render = async function() {
+  const [toDoList, usersList] = await getData();
   const userEmailMap = new Map();
   const userNameMap = new Map();
 
@@ -26,6 +33,7 @@ const render = async function () {
     const columnToDo = document.createElement('td');    
     const columnComplete = document.createElement('td');
     const columnName = document.createElement('td');  
+
     columnToDo.textContent = toDo.title;     
     columnComplete.textContent = toDo.completed;
     columnName.innerHTML = `<a href="mailto:${userEmailMap.get(toDo.userId)}">${userNameMap.get(toDo.userId)}</a>`;

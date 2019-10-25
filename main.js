@@ -12,9 +12,11 @@ async function crearedTable() {
 
   for (todo of todosList) {
     const tr = document.createElement('tr');
-    const [email, name, task] = [todoUsers.find(user => user.id === todo.userId).email,
-    todoUsers.find(user => user.id === todo.userId).name,
-    todo.completed ? 'positive' : 'warning'];
+    const [email, name, task] = [
+      todoUsers.find(user => user.id === todo.userId).email,
+      todoUsers.find(user => user.id === todo.userId).name,
+      todo.completed ? 'positive' : 'warning'];
+
     tr.innerHTML = `<td>${todo.title}</td>
                     <td><a href = "mailto:${email}">${name}</a></td>
                     <td class="${task}">${todo.completed ? 'Виконанно' : 'Забито'}</td>`;

@@ -6,8 +6,9 @@ const connection = (url) => {
 };
 
 const data = async () => {
-  const todos = await connection('https://jsonplaceholder.typicode.com/todos');
-  const users = await connection('https://jsonplaceholder.typicode.com/users');
+  const [todos, users] = await Promise.all(
+    [connection(`https://jsonplaceholder.typicode.com/todos`),
+            connection(`https://jsonplaceholder.typicode.com/users`)]);
 
   const tbody = document.getElementsByClassName('tbody')[0];
   const keys = Object.keys(todos);
@@ -15,7 +16,6 @@ const data = async () => {
   keys.map(item => {
     const trow = document.createElement('tr');
     const value = todos[item];
-    const tbody = document.getElementsByClassName('tbody')[0];
     const userEmail = users.find(user => user.id === value.userId).email;
     const userName= users.find(user => user.id === value.userId).name;
     const completeness = value.completed ? 'completed' : 'failed';

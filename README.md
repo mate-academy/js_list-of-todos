@@ -7,4 +7,4 @@ By requesting https://jsonplaceholder.typicode.com/todos and https://jsonplaceho
 3. whether the item is completed.
 
 
- [https://yurabobeshko.github.io/js_list-of-todos/]
+ [https://yurabobeshko.github.io/js_list-of-todos/src/index.html]

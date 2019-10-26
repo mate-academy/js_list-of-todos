@@ -14,11 +14,13 @@ const data = async () => {
 
   keys.map(item => {
     const trow = document.createElement('tr');
-    let value = todos[item];
+    const value = todos[item];
     const tbody = document.getElementsByClassName('tbody')[0];
     const usersEmail = users.find(user => user.id === value.userId).email;
     const userName= users.find(user => user.id === value.userId).name;
-    let completeness = (value.completed) ? 'completed' : 'failed';
+    const completeness = value.completed ? 'completed' : 'failed';
+
+    trow.className = value.completed ? 'positive' : 'negative';
 
     trow.innerHTML = `<td>${value.title}</td>
                      <td><a href = 'mailto:${usersEmail}'>${userName}</a></td>

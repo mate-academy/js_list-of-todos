@@ -8,7 +8,7 @@ const connection = (url) => {
 const data = async () => {
   const [todos, users] = await Promise.all(
     [connection(`https://jsonplaceholder.typicode.com/todos`),
-            connection(`https://jsonplaceholder.typicode.com/users`)]);
+     connection(`https://jsonplaceholder.typicode.com/users`)]);
 
   const tbody = document.getElementsByClassName('tbody')[0];
   const keys = Object.keys(todos);

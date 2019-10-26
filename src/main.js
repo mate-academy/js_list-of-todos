@@ -16,14 +16,14 @@ const data = async () => {
     const trow = document.createElement('tr');
     const value = todos[item];
     const tbody = document.getElementsByClassName('tbody')[0];
-    const usersEmail = users.find(user => user.id === value.userId).email;
+    const userEmail = users.find(user => user.id === value.userId).email;
     const userName= users.find(user => user.id === value.userId).name;
     const completeness = value.completed ? 'completed' : 'failed';
 
     trow.className = value.completed ? 'positive' : 'negative';
 
     trow.innerHTML = `<td>${value.title}</td>
-                     <td><a href = 'mailto:${usersEmail}'>${userName}</a></td>
+                     <td><a href = 'mailto:${userEmail}'>${userName}</a></td>
                      <td>${completeness}</td>`;
     tbody.append(trow);
   });

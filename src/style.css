@@ -1,0 +1,15 @@
+table {
+  border-collapse: collapse;
+}
+
+.completed {
+  background-color: #008000;
+}
+
+.uncompleted {
+  background-color: #FF0000;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+}

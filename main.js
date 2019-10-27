@@ -8,14 +8,16 @@ table.innerHTML = `
   `
 const tableBody = document.createElement('tbody');
 tableBody.classList.add('tableBody');
+const todosUrl = `https://jsonplaceholder.typicode.com/todos`;
+const usersUrl = `https://jsonplaceholder.typicode.com/users`;
 
-const askToServ = async function(url) {
+const getDataByUrl = async function(url) {
   return fetch(url)
     .then(responce => responce.json());
 }
 
 const getData = async function() {
-  return await Promise.all([askToServ(`https://jsonplaceholder.typicode.com/todos`), askToServ(`https://jsonplaceholder.typicode.com/users`)]);
+  return await Promise.all([getDataByUrl(todosUrl), getDataByUrl(usersUrl)]);
 }
 
 const render = async function() {
@@ -29,10 +31,14 @@ const render = async function() {
   }
 
   for (let toDo of toDoList) {
-    const row = document.createElement('tr');    
-    const columnToDo = document.createElement('td');    
+    const row = document.createElement('tr');
+    row.classList.add('tableRows')    
+    const columnToDo = document.createElement('td');   
+    columnToDo.classList.add('td'); 
     const columnComplete = document.createElement('td');
+    columnComplete.classList.add('td');
     const columnName = document.createElement('td');  
+    columnName.classList.add('td');
 
     columnToDo.textContent = toDo.title;     
     columnComplete.textContent = toDo.completed;

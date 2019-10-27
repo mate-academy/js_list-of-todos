@@ -1,0 +1,18 @@
+a {
+  transition: color 0.7s;
+  &:hover {
+    color: blueviolet !important;
+  }
+}
+
+tbody {
+  tr {
+    transition: background-color 0.7s;
+  }
+}
+
+.positive ,
+.negative {
+  transition: background-color 0.7s !important;
+}
+

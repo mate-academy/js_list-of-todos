@@ -3,13 +3,14 @@ const url = 'https://jsonplaceholder.typicode.com/';
 const tableBody = document.getElementById('table_body');
 
 function getInfo(URL) {
-  return fetch(URL)
-                  .then(responce => responce.json());
+  return fetch(URL).then(responce => responce.json());
 }
 
 async function createTable() {
-  const [toDos, users] = await Promise.all([getInfo(`${url}todos`),
-    getInfo(`${url}users`)]);
+  const [toDos, users] = await Promise.all([
+    getInfo(`${url}todos`),
+    getInfo(`${url}users`)
+    ]);
 
   for (const todo of toDos) {
     const row = document.createElement('tr');

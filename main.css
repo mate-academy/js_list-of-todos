@@ -1,0 +1,12 @@
+#todo-list {
+  border-collapse: collapse;
+}
+#todo-list .column-head {
+  border: 1px solid black;
+  background-color: #cccccc;
+}
+#todo-list .TODOitem, #todo-list .userName, #todo-list .item-status {
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,7 +1,7 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const TODOS = 'todos';
 const USERS = 'users';
-
+const TODO_LIST = document.querySelector(".todolist");
 let listOfTodos = [];
 
 const getAll = (url) => {
@@ -9,33 +9,20 @@ const getAll = (url) => {
         .then(response => response.json())
 };
 
-const getItem = (url, id) => {
-    return fetch(`${BASE_URL}/${url}/${id}`)
-        .then(response => response.json())
-};
-
 const init = async () => {
-  const todos = await getAll(TODOS);
-  const users = await getAll(USERS);
+    const todos = await getAll(TODOS);
+    const users = await getAll(USERS);
 
-  for (let i = 0; i < todos.length; i++) {
-      const obj = todos[i];
-      listOfTodos[i] = {};
-      for (let j = 0; j < users.length; j++) {
-          if (users[j].id === todos[i].userId) {
-              listOfTodos[i].name = users[j].name;
-          }
-      }
-      listOfTodos[i].title = obj.title;
-      listOfTodos[i].completed = obj.completed;
-  }
+    fetchTodoItems(todos, users);
 
-  console.log(listOfTodos);
+    let data = Object.keys(listOfTodos[0]);
+    generateTableHead(TODO_LIST, data);
+    generateTable(TODO_LIST, listOfTodos);
 };
 
 init();
 
-function generateTableHead(table, data) {
+const generateTableHead = (table, data) => {
     let thead = table.createTHead();
     let row = thead.insertRow();
     for (let key of data) {
@@ -44,8 +31,8 @@ function generateTableHead(table, data) {
         th.appendChild(text);
         row.appendChild(th);
     }
-}
-function generateTable(table, data) {
+};
+const generateTable = (table, data) => {
     for (let element of data) {
         let row = table.insertRow();
         for (let key in element) {
@@ -54,8 +41,27 @@ function generateTable(table, data) {
             cell.appendChild(text);
         }
     }
-}
-let table = document.querySelector("table");
-let data = Object.keys(listOfTodos[0]);
-generateTableHead(table, data);
-generateTable(table, listOfTodos);
+};
+
+const fetchTodoItems = (todos, users) => {
+    for (let i = 0; i < todos.length; i++) {
+        listOfTodos[i] = {};
+
+        appendUserToTodoList(todos[i], listOfTodos[i], users);
+        listOfTodos[i].title = todos[i].title;
+        listOfTodos[i].completed = todos[i].completed;
+    }
+};
+
+const appendUserToTodoList = (todolistOld, todoListNew, users) => {
+    for (let j = 0; j < users.length; j++) {
+        if (users[j].id === todolistOld.userId) {
+            todoListNew.name = users[j].name;
+        }
+    }
+};
+
+
+
+
+

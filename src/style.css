@@ -1,0 +1,16 @@
+table {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+td {
+  background-color: rgb(200, 200, 200);
+}
+
+.active {
+  background-color: green;
+}
+
+.non-active {
+  background-color: red;
+}

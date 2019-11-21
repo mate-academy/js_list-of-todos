@@ -9,7 +9,7 @@ const getDataFromServer = async(url) => {
 const getTodosWithUsers = (todos, users) => {
   return todos.map(item => ({
     ...item,
-    user: users.find(elem => elem.id === item.userId),
+    user: users.find(user => user.id === item.userId),
   }));
 };
 
@@ -20,19 +20,19 @@ const getTodosList = async () => {
   ]);
   const todosWithUsers = getTodosWithUsers(todosandUser[0], todosandUser[1]);
 
-  todosWithUsers.forEach(item => {
+  todosWithUsers.forEach(todo => {
     table.innerHTML += `
       <tr>
         <td>
-          ${item.title}
+          ${todo.title}
         </td>
         <td>
-          <a href="mailto:${item.user.email}">
-            ${item.user.name}
+          <a href="mailto:${todo.user.email}">
+            ${todo.user.name}
           </a>
         </td>
-        <td class=${item.completed ? "active" : "non-active"}>
-          ${item.completed}
+        <td class=${todo.completed ? "active" : "non-active"}>
+          ${todo.completed}
         </td>
       </tr>
     `
